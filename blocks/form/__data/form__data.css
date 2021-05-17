@@ -1,0 +1,12 @@
+.form__data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 54px;
+}
+
+@media screen and (max-width: 590px) {
+    .form__data {
+        padding-top: 75px;
+    }
+}

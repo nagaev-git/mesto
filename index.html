@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/style.css">
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Места России</title>
 </head>
 <body>
@@ -14,54 +14,66 @@
         </header>
         <main class="main">
             <section class="profile">
-                <img src="./images/avatar.jpg" alt="Аватар" class="profile__image">
+                <img src="./images/profile/avatar.jpg" alt="Аватар" class="profile__image">
                 <div class="profile__items">
                     <div class="profile__info">
                         <p class="profile__name">Жак-Ив Кусто</p>
-                        <a href="#" class="profile__button_edit"></a>
+                        <button type="button" class="profile__button_edit"></button>
                         <p class="profile__job">Исследователь океана</p>
                     </div>
-                    <a href="#" class="profile__button_add"></a>
+                    <button type="button" class="profile__button_add"></button>
                 </div>
             </section>
             <section class="cards">
                 <ul class="cards__list">
                     <li class="card">
-                        <img src="./images/kamchatka.jpg" alt="" class="card__image">
+                        <img src="./images/cards/kamchatka.jpg" alt="Гора на Камчатке" class="card__image">
                         <p class="card__title">Камчатка</p>
-                        <a href="#" class="card__bottom_like"></a>
+                        <button type="button" class="card__like"></button>
                     </li>
                     <li class="card">
-                        <img src="./images/krasnodar.jpg" alt="" class="card__image">
+                        <img src="./images/cards/krasnodar.jpg" alt="Береговая линия с домами" class="card__image">
                         <p class="card__title">Краснодар</p>
-                        <a href="#" class="card__bottom_like"></a>
+                        <button type="button" class="card__like"></button>
                     </li>
                     <li class="card">
-                        <img src="./images/olkhon island.jpg" alt="" class="card__image">
+                        <img src="./images/cards/olkhon island.jpg" alt="Скала в замерзшем озере" class="card__image">
                         <p class="card__title">Остров Ольхон</p>
-                        <a href="#" class="card__bottom_like"></a>
+                        <button type="button" class="card__like"></button>
                     </li>
                     <li class="card">
-                        <img src="./images/saint_petersburg.jpg" alt="" class="card__image">
+                        <img src="./images/cards/saint_petersburg.jpg" alt="Тропинка из досок в лесу" class="card__image">
                         <p class="card__title">Санкт-Петербург</p>
-                        <a href="#" class="card__bottom_like"></a>
+                        <button type="button" class="card__like"></button>
                     </li>
                     <li class="card">
-                        <img src="./images/tula.jpg" alt="" class="card__image">
+                        <img src="./images/cards/tula.jpg" alt="Река под мостом с утками" class="card__image">
                         <p class="card__title">Тула</p>
-                        <a href="#" class="card__bottom_like"></a>
+                        <button type="button" class="card__like"></button>
                     </li>
                     <li class="card">
-                        <img src="./images/valdai.jpg" alt="" class="card__image">
+                        <img src="./images/cards/valdai.jpg" alt="Вид на храм" class="card__image">
                         <p class="card__title">Валдай</p>
-                        <a href="#" class="card__bottom_like"></a>
+                        <button type="button" class="card__like"></button>
                     </li>
                 </ul>
             </section>
         </main>
         <footer class="footer">
-            <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+            <p class="footer__copyright">&#169; 2021 Mesto Russia</p>
         </footer>
+        <section class="popup">
+            <button type="button" class="form__toogle"></button>
+            <div class="form__container">
+                <h2 class="form__title">Редактировать профиль</h2>
+                <form action="#" class="form__data">
+                    <input type="text" name="user"class="form__item form__item_name" value="">
+                    <input type="text" name="job" class="form__item form__item_job" value="">
+                    <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
+                </form>
+            </div>
+        </section>
     </div>
+    <script src="./script/script.js"></script>
 </body>
 </html>
