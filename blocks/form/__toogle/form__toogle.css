@@ -7,7 +7,7 @@
     cursor: pointer;
     border: none;
     background: transparent;
-    background-size: contain;
+    background-size: cover;
     background-image: url(../../../images/popup/button_close.svg);
 }
 
