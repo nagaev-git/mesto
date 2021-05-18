@@ -1,4 +1,4 @@
-.profile__button_edit {
+.profile__button-edit {
     padding: 0;
     margin-left: 18px;
     width: 22px;
@@ -8,23 +8,23 @@
     background: transparent;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(../../../../images/profile/button_edit.svg);
+    background-image: url(../../../images/profile/button_edit.svg);
 }
 
-.profile__button_edit:hover {
+.profile__button-edit:hover {
     opacity: 0.6;
     transition: 200ms ease-in-out;
 }
 
 @media screen and (max-width: 960px) {
-    .profile__button_edit {
+    .profile__button-edit {
         width: 18px;
         height: 18px;
     }
 }
 
 @media screen and (max-width: 700px) {
-    .profile__button_edit {
+    .profile__button-edit {
         margin-left: 10px;
         bottom: 55px;
         left: 110px;
