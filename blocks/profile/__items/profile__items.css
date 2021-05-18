@@ -2,11 +2,10 @@
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
     padding-left: 30px;
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 700px) {
     .profile__items {
         flex-direction: column;
         padding-left: 0;

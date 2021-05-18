@@ -16,12 +16,11 @@
     }
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 700px) {
     .profile__button_add {
         max-width: 282px;
         width: 100%;
         margin-right: 0px;
-        margin-top: 36px;
     }
 }
 
