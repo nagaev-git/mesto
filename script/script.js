@@ -4,7 +4,7 @@ let jobProfile = document.querySelector('.profile__job');
 let nameInput = document.querySelector('.form__item-name');
 let jobInput = document.querySelector('.form__item-job');
 let openPopup = document.querySelector('.profile__button-edit');
-let closePopup = document.querySelector('.form__toggle');
+let closePopup = document.querySelector('.popup__toggle');
 let formData = document.querySelector('.form__data');
 
 function popupOpen() {
