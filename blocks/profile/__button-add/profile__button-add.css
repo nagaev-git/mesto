@@ -3,6 +3,7 @@
     width: 146px;
     height: 46px;
     border: 2px solid #FFFFFF;
+    border-radius: 2px;
     cursor: pointer;
     background: transparent;
     background-image: url(../../../images/profile/button_add.svg);

@@ -17,12 +17,12 @@
                 <img src="./images/profile/avatar.jpg" alt="Аватар" class="profile__image">
                 <div class="profile__items">
                     <div class="profile__info">
-                        <p class="profile__name">Жак-Ив Кусто</p>
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
                         <p class="profile__job">Исследователь океана</p>
                     </div>
                     <div class="profile__button">
-                        <button type="button" class="profile__button-edit"></button>
-                        <button type="button" class="profile__button-add"></button>
+                        <button type="button" aria-label="Редактировать профиль" class="profile__button-edit"></button>
+                        <button type="button" aria-label="Добавить карточку" class="profile__button-add"></button>
                     </div>
                 </div>
             </section>
@@ -30,33 +30,33 @@
                 <ul class="cards__list">
                     <li class="card">
                         <img src="./images/cards/kamchatka.jpg" alt="Гора на Камчатке" class="card__image">
-                        <p class="card__title">Камчатка</p>
-                        <button type="button" class="card__like"></button>
+                        <h2 class="card__title">Камчатка</h2>
+                        <button type="button" aria-label="Нравится" class="card__like"></button>
                     </li>
                     <li class="card">
                         <img src="./images/cards/krasnodar.jpg" alt="Береговая линия с домами" class="card__image">
-                        <p class="card__title">Краснодар</p>
-                        <button type="button" class="card__like"></button>
+                        <h2 class="card__title">Краснодар</h2>
+                        <button type="button" aria-label="Нравится" class="card__like"></button>
                     </li>
                     <li class="card">
-                        <img src="./images/cards/olkhon island.jpg" alt="Скала в замерзшем озере" class="card__image">
-                        <p class="card__title">Остров Ольхон</p>
-                        <button type="button" class="card__like"></button>
+                        <img src="./images/cards/olkhon_island.jpg" alt="Скала в замерзшем озере" class="card__image">
+                        <h2 class="card__title">Остров Ольхон</h2>
+                        <button type="button" aria-label="Нравится" class="card__like"></button>
                     </li>
                     <li class="card">
                         <img src="./images/cards/saint_petersburg.jpg" alt="Тропинка из досок в лесу" class="card__image">
-                        <p class="card__title">Санкт-Петербург</p>
-                        <button type="button" class="card__like"></button>
+                        <h2 class="card__title">Санкт-Петербург</h2>
+                        <button type="button" aria-label="Нравится" class="card__like"></button>
                     </li>
                     <li class="card">
                         <img src="./images/cards/tula.jpg" alt="Река под мостом с утками" class="card__image">
-                        <p class="card__title">Тула</p>
-                        <button type="button" class="card__like"></button>
+                        <h2 class="card__title">Тула</h2>
+                        <button type="button" aria-label="Нравится" class="card__like"></button>
                     </li>
                     <li class="card">
                         <img src="./images/cards/valdai.jpg" alt="Вид на храм" class="card__image">
-                        <p class="card__title">Валдай</p>
-                        <button type="button" class="card__like"></button>
+                        <h2 class="card__title">Валдай</h2>
+                        <button type="button" aria-label="Нравится" class="card__like"></button>
                     </li>
                 </ul>
             </section>
@@ -64,20 +64,20 @@
         <footer class="footer">
             <p class="footer__copyright">&#169; 2021 Mesto Russia</p>
         </footer>
-        <section class="popup">
+        <div class="popup">
+            <button type="button" aria-label="Закрыть окно" class="form__toggle"></button>
             <div class="form">
-                <button type="button" class="form__toogle"></button>
+                <h2 class="form__title">Редактировать профиль</h2>
                 <div class="form__container">
-                    <h2 class="form__title">Редактировать профиль</h2>
-                    <form class="form__data">
-                        <input type="text" name="user"class="form__item form__item_name" value="">
-                        <input type="text" name="job" class="form__item form__item_job" value="">
+                    <form name="form" class="form__data">
+                        <input type="text" name="user" value="" placeholder="Ваше имя" maxlength="30" required class="form__item form__item-name">
+                        <input type="text" name="job" value="" placeholder="Ваша профессия" maxlength="40" required class="form__item form__item-job">
                         <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
     <script src="./script/script.js"></script>
-</body>
+</body> 
 </html>
