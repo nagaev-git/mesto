@@ -1,8 +1,9 @@
-.popup__toggle {
-    position: relative;
+.popup__toggle {    
+    position: absolute;
     width: 40px;
     height: 40px;
-    left: 235px;
+    left: 430px;
+    top: -40px;
     padding: 0;
     cursor: pointer;
     border: none;
@@ -18,8 +19,9 @@
 
 @media screen and (max-width: 590px) {
     .popup__toggle {
-        width: 28px;
-        height: 28px;
-        left: 130px;
+        width: 26px;
+        height: 26px;
+        left: 256px;
+        top: -38px;
     }
 }

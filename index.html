@@ -10,7 +10,7 @@
 <body>
     <div class="page">
         <header class="header">
-            <a href="#" class="header__logo"></a>
+            <img src="./images/header/logo.svg" alt="Логотип проекта" class="header__logo">
         </header>
         <main class="main">
             <section class="profile">
@@ -65,13 +65,13 @@
             <p class="footer__copyright">&#169; 2021 Mesto Russia</p>
         </footer>
         <div class="popup">
-            <button type="button" aria-label="Закрыть окно" class="popup__toggle"></button>
-            <div class="form">
-                <h2 class="form__title">Редактировать профиль</h2>
-                <div class="form__container">
+            <div class="popup__container form">
+                <button type="button" aria-label="Закрыть окно" class="popup__toggle"></button>
+                <div class="form">
+                    <h2 class="form__title">Редактировать профиль</h2>
                     <form name="form" class="form__data">
-                        <input type="text" name="user" value="" placeholder="Ваше имя" maxlength="30" required class="form__item form__item-name">
-                        <input type="text" name="job" value="" placeholder="Ваша профессия" maxlength="40" required class="form__item form__item-job">
+                        <input type="text" name="user" value="" placeholder="Ваше имя" maxlength="30" required class="form__input form__input_js_name">
+                        <input type="text" name="job" value="" placeholder="Ваша профессия" maxlength="40" required class="form__input form__input_js_job">
                         <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
                     </form>
                 </div>
