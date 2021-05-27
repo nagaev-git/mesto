@@ -6,21 +6,50 @@ const jobInput = document.querySelector('.form__input_js_job');
 const openPopup = document.querySelector('.profile__button-edit');
 const closePopup = document.querySelector('.popup__toggle');
 const formData = document.querySelector('.form__data');
+
+
+const cardTemplate = document.querySelector('.card_template').content;
 const cardsList = document.querySelector('.cards__list');
-const card = document.querySelector('.card');
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
 
-// const userTemplate = document.querySelector('.cards__list').content;
-// const usersOnline = document.querySelector('.cards');
 
-// // клонируем содержимое тега template
-// const userElement = userTemplate.querySelector('.card').cloneNode(true);
 
-// // наполняем содержимым
-// userElement.querySelector('.card__image').src = 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg';
-// userElement.querySelector('.card__title').textContent = 'Архыз';
+function renderCards() {
+    initialCards.forEach((item) => {
+        const newCard = cardTemplate.cloneNode(true);
+        newCard.querySelector('.card__title').innerText = item['name'];
+        newCard.querySelector('.card__image').src = item['link'];
+        cardsList.appendChild(newCard);
+     });
+}
 
-// // отображаем на странице
-// usersOnline.append(userElement);
+renderCards();
+
 
 function popupOpen() {
     addPopup.classList.add('popup_opened');
@@ -44,3 +73,4 @@ openPopup.addEventListener('click', popupOpen);
 closePopup.addEventListener('click', popupClose);
 
 formData.addEventListener('submit', formSubmitHandler);
+
