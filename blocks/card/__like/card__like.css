@@ -16,7 +16,6 @@
     transition: 200ms ease-in-out;
 }
 
-.card__like:active {
+.card__like-active {
     background-image: url(../../../images/cards/button_like_active.svg);
-    opacity: 1;
 }
