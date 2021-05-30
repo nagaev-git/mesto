@@ -6,6 +6,8 @@ const jobInput = document.querySelector('.form__input_js_job');
 const openPopup = document.querySelector('.profile__button-edit');
 const closePopup = document.querySelector('.popup__toggle');
 const formData = document.querySelector('.form__data');
+const formTitle = document.querySelector('.form__title');
+const cardPopup = document.querySelector('.profile__button-add');
 
 
 const cardTemplate = document.querySelector('.card_template').content;
@@ -51,10 +53,20 @@ function renderCards() {
 renderCards();
 
 
-function popupOpen() {
+function popupOpen(evt) {
+  if (evt.target.className === 'profile__button-add') {
     addPopup.classList.add('popup_opened');
+    formTitle.textContent = 'Новое место';
+    nameInput.value = '';
+    jobInput.value = '';
+    nameInput.placeholder = 'Название';
+    jobInput.placeholder = 'Ссылка на картинку';
+  } else if (evt.target.className === 'profile__button-edit') {
+    addPopup.classList.add('popup_opened');
+    formTitle.textContent = 'Редактировать профиль';
     nameInput.value = nameProfile.textContent;
     jobInput.value = jobProfile.textContent;
+  }
 }
 
 function popupClose() {
@@ -63,10 +75,20 @@ function popupClose() {
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
-    nameProfile.textContent = nameInput.value;
-    jobProfile.textContent = jobInput.value;
-    popupClose();
+    if (formTitle.textContent === 'Новое место') {
+      const newCard = cardTemplate.cloneNode(true);
+      newCard.querySelector('.card__title').innerText = nameInput.value;
+      newCard.querySelector('.card__image').src = jobInput.value;
+      cardsList.prepend(newCard);
+      popupClose();
+    } else if (formTitle.textContent === 'Редактировать профиль') {
+      nameProfile.textContent = nameInput.value;
+      jobProfile.textContent = jobInput.value;
+      popupClose();
+    }
 }
+
+cardPopup.addEventListener('click', popupOpen);
 
 openPopup.addEventListener('click', popupOpen);
 
