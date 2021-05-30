@@ -10,8 +10,10 @@ const formTitle = document.querySelector('.form__title');
 const cardPopup = document.querySelector('.profile__button-add');
 
 
+
 const cardTemplate = document.querySelector('.card_template').content;
 const cardsList = document.querySelector('.cards__list');
+const cardLike = cardsList.querySelectorAll('.card__like');
 const initialCards = [
     {
       name: 'Архыз',
@@ -88,6 +90,7 @@ function formSubmitHandler (evt) {
     }
 }
 
+
 cardPopup.addEventListener('click', popupOpen);
 
 openPopup.addEventListener('click', popupOpen);
@@ -96,3 +99,6 @@ closePopup.addEventListener('click', popupClose);
 
 formData.addEventListener('submit', formSubmitHandler);
 
+cardsList.addEventListener('click', function (evt) {
+  evt.target.classList.toggle('card__like-active');
+});
