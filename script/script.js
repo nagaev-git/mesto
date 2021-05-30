@@ -52,9 +52,6 @@ function renderCards() {
      });
 }
 
-renderCards();
-
-
 function popupOpen(evt) {
   if (evt.target.className === 'profile__button-add') {
     addPopup.classList.add('popup_opened');
@@ -100,5 +97,7 @@ closePopup.addEventListener('click', popupClose);
 formData.addEventListener('submit', formSubmitHandler);
 
 cardsList.addEventListener('click', function (evt) {
-  evt.target.classList.toggle('card__like-active');
+  evt.target.classList.toggle('card__like_active');
 });
+
+renderCards();
