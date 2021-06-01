@@ -1,4 +1,4 @@
-.popup__toggle {    
+.popup__toggle_image {    
     position: absolute;
     width: 40px;
     height: 40px;
@@ -9,16 +9,16 @@
     border: none;
     background: transparent;
     background-size: cover;
-    background-image: url(../../../images/popup/button_close.svg);
+    background-image: url(../../../../images/popup/button_close.svg);
 }
 
-.popup__toggle:hover {
+.popup__toggle_image:hover {
     opacity: 0.6;
     transition: 200ms ease-in-out;
 }
 
 @media screen and (max-width: 590px) {
-    .popup__toggle {
+    .popup__toggle_image {
         width: 26px;
         height: 26px;
         right: 0;
