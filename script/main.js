@@ -5,15 +5,15 @@ const nameInput = document.querySelector('.form__input_js_name');
 const jobInput = document.querySelector('.form__input_js_job');
 const openPopup = document.querySelector('.profile__button-edit');
 const closePopup = document.querySelector('.popup__toggle');
+const formItem = document.querySelector('.form');
 const formData = document.querySelector('.form__data');
 const formTitle = document.querySelector('.form__title');
 const cardPopup = document.querySelector('.profile__button-add');
 const cardTemplate = document.querySelector('.card_template').content;
 const cardsList = document.querySelector('.cards__list');
-const popupShowImage = document.querySelector('.popup__image');
-const popupToggleImage = document.querySelector('.popup__toggle_image')
-const popupImage = document.querySelector('.image__full-size');
-const popupImageTitle = document.querySelector('.image__signature');
+const popupShowImage = document.querySelector('.image');
+const popupImage = document.querySelector('.image__item');
+const popupImageTitle = document.querySelector('.image__caption');
 
 
 
@@ -37,14 +37,12 @@ function renderCards(item) {
 
   const cardImage = newElement.querySelector('.card__image');
   cardImage.addEventListener('click', function (itemData) {
-    popupShowImage.classList.add('popup_opened');
-    popupShowImage.style.display = 'flex';
+    formItem.style.display = 'none';
+    addPopup.classList.add('popup_opened');
+    popupShowImage.style.display = 'block';
     popupImage.src = newElementImage.src;
     popupImage.alt = newElementTitle.alt;
     popupImageTitle.textContent = newElementTitle.textContent;
-    popupToggleImage.addEventListener('click', function (){
-      popupShowImage.classList.remove('popup_opened');
-    });
   })
 
   return newElement;
@@ -77,8 +75,10 @@ function popupOpen(evt) {
 
 
 
-function popupClose(evt) {
+function popupClose() {
   addPopup.classList.remove('popup_opened');
+  popupShowImage.style.display = 'none';
+  formItem.style.display = 'block';
 }
 
 
@@ -104,15 +104,13 @@ function formSubmitHandler (evt) {
 
     const cardImage = newElement.querySelector('.card__image');
     cardImage.addEventListener('click', function (itemData) {
-    popupShowImage.classList.add('popup_opened');
-    popupShowImage.style.display = 'flex';
-    popupImage.src = newElementImage.src;
-    popupImage.alt = newElementTitle.alt;
-    popupImageTitle.textContent = newElementTitle.textContent;
-    popupToggleImage.addEventListener('click', function (){
-      popupShowImage.classList.remove('popup_opened');
-    });
-  })
+      formItem.style.display = 'none';
+      addPopup.classList.add('popup_opened');
+      popupShowImage.style.display = 'block';
+      popupImage.src = newElementImage.src;
+      popupImage.alt = newElementTitle.alt;
+      popupImageTitle.textContent = newElementTitle.textContent;
+    })
       
     cardsList.prepend(newElement);
     popupClose();
