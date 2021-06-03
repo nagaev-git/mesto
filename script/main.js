@@ -38,8 +38,8 @@ function renderCards(item) {
   const cardImage = newElement.querySelector('.card__image');
   cardImage.addEventListener('click', function (itemData) {
     formItem.style.display = 'none';
-    addPopup.classList.add('popup_opened');
     popupShowImage.style.display = 'block';
+    addPopup.classList.add('popup_opened');
     popupImage.src = newElementImage.src;
     popupImage.alt = newElementTitle.alt;
     popupImageTitle.textContent = newElementTitle.textContent;
@@ -58,6 +58,8 @@ initialCards.forEach((itemData) => {
 
 
 function popupOpen(evt) {
+  formItem.style.display = 'block';
+  popupShowImage.style.display = 'none';
   if (evt.target.className === 'profile__button-add') {
     addPopup.classList.add('popup_opened');
     formTitle.textContent = 'Новое место';
@@ -77,8 +79,8 @@ function popupOpen(evt) {
 
 function popupClose() {
   addPopup.classList.remove('popup_opened');
-  popupShowImage.style.display = 'none';
-  formItem.style.display = 'block';
+  // popupShowImage.style.display = 'none';
+  // formItem.style.display = 'block';
 }
 
 
@@ -105,12 +107,12 @@ function formSubmitHandler (evt) {
     const cardImage = newElement.querySelector('.card__image');
     cardImage.addEventListener('click', function (itemData) {
       formItem.style.display = 'none';
-      addPopup.classList.add('popup_opened');
       popupShowImage.style.display = 'block';
+      addPopup.classList.add('popup_opened');
       popupImage.src = newElementImage.src;
       popupImage.alt = newElementTitle.alt;
       popupImageTitle.textContent = newElementTitle.textContent;
-    })
+  })
       
     cardsList.prepend(newElement);
     popupClose();
