@@ -43,7 +43,7 @@ function renderCards(item) {
     popupImage.src = newElementImage.src;
     popupImage.alt = newElementTitle.alt;
     popupImageTitle.textContent = newElementTitle.textContent;
-  })
+  });
 
   return newElement;
 }
@@ -110,7 +110,7 @@ function formSubmitHandler (evt) {
       popupImage.src = newElementImage.src;
       popupImage.alt = newElementTitle.alt;
       popupImageTitle.textContent = newElementTitle.textContent;
-  })
+  });
       
     cardsList.prepend(newElement);
     popupClose();
