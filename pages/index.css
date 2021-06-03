@@ -31,3 +31,6 @@
 @import url(../blocks/form/__data/form__data.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__button/form__button.css);
+@import url(../blocks/image/image.css);
+@import url(../blocks/image/__item/image__item.css);
+@import url(../blocks/image/__caption/image__caption.css);

@@ -2,7 +2,7 @@
     position: absolute;
     width: 40px;
     height: 40px;
-    left: 430px;
+    right: -40px;
     top: -40px;
     padding: 0;
     cursor: pointer;
@@ -17,11 +17,11 @@
     transition: 200ms ease-in-out;
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 800px) {
     .popup__toggle {
         width: 26px;
         height: 26px;
-        left: 256px;
+        right: 0;
         top: -38px;
     }
 }
