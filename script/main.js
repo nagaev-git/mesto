@@ -79,8 +79,6 @@ function popupOpen(evt) {
 
 function popupClose() {
   addPopup.classList.remove('popup_opened');
-  // popupShowImage.style.display = 'none';
-  // formItem.style.display = 'block';
 }
 
 

@@ -17,7 +17,7 @@
     transition: 200ms ease-in-out;
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 800px) {
     .popup__toggle {
         width: 26px;
         height: 26px;
