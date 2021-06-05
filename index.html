@@ -34,7 +34,7 @@
         <footer class="footer">
             <p class="footer__copyright">&#169; 2021 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup popup_edit-profile">
             <div class="popup__container">
                 <button type="button" aria-label="Закрыть окно" class="popup__toggle"></button>
                 <div class="form">
@@ -45,15 +45,33 @@
                         <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
                     </form>
                 </div>
+            </div>
+        </div>
+        <div class="popup popup_new-place">
+            <div class="popup__container">
+                <button type="button" aria-label="Закрыть окно" class="popup__toggle"></button>
+                <div class="form">
+                    <h2 class="form__title">Новое место</h2>
+                    <form name="form" class="form__data">
+                        <input type="text" name="place" value="" placeholder="Название" maxlength="30" required class="form__input form__input_js_place">
+                        <input type="text" name="link" value="" placeholder="Ссылка на кртинку" maxlength="80" required class="form__input form__input_js_link">
+                        <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="popup popup_show-image">
+            <div class="popup__container">
+                <button type="button" aria-label="Закрыть окно" class="popup__toggle"></button>
                 <figure class="image">
                     <img src="#" alt="#" class="image__item">
                     <figcaption class="image__caption"></figcaption>
                 </figure>
             </div>
         </div>
-        <template class="card_template">
+        <template class="card-template">
             <li class="card">
-                <button class="card__delete"></button>
+                <button type="button" class="card__delete"></button>
                 <img src="#" class="card__image">
                 <h2 class="card__title"></h2>
                 <button type="button" aria-label="Нравится" class="card__like"></button>
