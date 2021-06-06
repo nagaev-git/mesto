@@ -1,12 +1,20 @@
-// шаблоны попапа
+// блоки попап
 const popupProfileEdit = document.querySelector('.popup_edit-profile');
+const toggleProfileEdit = popupProfileEdit.querySelector('.popup__toggle');
+const dataProfileEdit = popupProfileEdit.querySelector('.form__data');
+
 const popupNewPlace = document.querySelector('.popup_new-place');
+const toggleNewPlace = popupNewPlace.querySelector('.popup__toggle');
+const dataNewPlace = popupNewPlace.querySelector('.form__data');
+
 const popupShowImage = document.querySelector('.popup_show-image');
+const toggleShowImage = popupShowImage.querySelector('.popup__toggle');
 // редактирование профиля
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__job');
-// submit формы
-const formData = document.querySelector('.form__data');
+const profileSection = document.querySelector('.profile');
+const profileButtonEdit = profileSection.querySelector('.profile__button-edit');
+const profileButtonAdd = profileSection.querySelector('.profile__button-add');
+const profileName = profileSection.querySelector('.profile__name');
+const profileJob = profileSection.querySelector('.profile__job');
 // инпуты формы
 const formNameInput = document.querySelector('.form__input_js_name');
 const formJobInput = document.querySelector('.form__input_js_job');
@@ -29,6 +37,7 @@ function createCard({name, link}) {
   newElementTitle.textContent = name;
   newElementImage.src = link;
   newElementImage.alt = name;
+
 // слушатель события лайк
   const cardLike = newElement.querySelector('.card__like');
   cardLike.addEventListener('click', toggleLikeCard);
@@ -53,7 +62,7 @@ function renderCard(card) {
   cardsList.prepend(card);
 }
 
-//удаление крточек
+// удаление крточек
 function deleteCardElement(evt) {
   evt.target.closest('.card').remove();
 }
@@ -71,6 +80,7 @@ function showImageCard(evt) {
   imageTitle.textContent = evt.target.alt;
 }
 
+
 // открыть попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -80,11 +90,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-
 // попап редактирования профиля
-document.querySelector('.profile__button-edit').addEventListener('click', openEditProfilePopup);
-popupProfileEdit.querySelector('.popup__toggle').addEventListener('click', closeEditProfilePopup);
-
 function openEditProfilePopup() {
   formNameInput.value = profileName.textContent;
   formJobInput.value = profileJob.textContent;
@@ -96,12 +102,8 @@ function closeEditProfilePopup() {
 }
 
 // попап добавления нового места
-document.querySelector('.profile__button-add').addEventListener('click', openNewPlacePopup);
-popupNewPlace.querySelector('.popup__toggle').addEventListener('click', closeNewPlacePopup);
-
 function openNewPlacePopup() {
-  formPlaceInput.value = '';
-  formLinkInput.value = '';
+  dataNewPlace.reset();
   openPopup(popupNewPlace);
 }
 
@@ -110,9 +112,6 @@ function closeNewPlacePopup() {
 }
 
 // попап изображения карточки
-cardsList.querySelector('.card__image').addEventListener('click', openShowImagePopup);
-popupShowImage.querySelector('.popup__toggle').addEventListener('click', closeShowImagePopup);
-
 function openShowImagePopup() {
   openPopup(popupShowImage);
 }
@@ -121,7 +120,6 @@ function closeShowImagePopup() {
   closePopup(popupShowImage);
 }
 
-
 // отправка данных, редактирование профиля
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -129,9 +127,6 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = formJobInput.value;
   closeEditProfilePopup();
 }
-
-popupProfileEdit.querySelector('.form__data').addEventListener('submit', handleProfileFormSubmit);
-
 
 // отправка данных, создание новой карточки
 function handleCreatCardFormSubmit(evt) {
@@ -143,4 +138,20 @@ function handleCreatCardFormSubmit(evt) {
   closeNewPlacePopup();
 }
 
-popupNewPlace.querySelector('.form__data').addEventListener('submit', handleCreatCardFormSubmit);
+
+// попап редактирования профиля
+profileButtonEdit.addEventListener('click', openEditProfilePopup);
+toggleProfileEdit.addEventListener('click', closeEditProfilePopup);
+
+// попап добавления нового места
+profileButtonAdd.addEventListener('click', openNewPlacePopup);
+toggleNewPlace.addEventListener('click', closeNewPlacePopup);
+
+// попап изображения карточки
+toggleShowImage.addEventListener('click', closeShowImagePopup);
+
+// submit редактирования профиля 
+dataProfileEdit.addEventListener('submit', handleProfileFormSubmit);
+
+// submit новой карточки
+dataNewPlace.addEventListener('submit', handleCreatCardFormSubmit);
