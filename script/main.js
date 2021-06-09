@@ -90,8 +90,16 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
+// function keyDownEscapePopup(item) {
+//   item.addEventListener('keydown', function(evt) {
+//     if (evt.key === 'Escape') {
+//       console.log('ok');
+//     }
+//   })
+// }
+
 // попап редактирования профиля
-function openEditProfilePopup() {
+function openEditProfilePopup(evt) {
   formNameInput.value = profileName.textContent;
   formJobInput.value = profileJob.textContent;
   openPopup(popupProfileEdit);
@@ -99,6 +107,12 @@ function openEditProfilePopup() {
 
 function closeEditProfilePopup() {
   closePopup(popupProfileEdit);
+}
+
+function closeEditProfilePopupOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closeEditProfilePopup();
+  }
 }
 
 // попап добавления нового места
@@ -111,6 +125,12 @@ function closeNewPlacePopup() {
   closePopup(popupNewPlace);
 }
 
+function closeNewPlacePopupOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closeNewPlacePopup();
+  }
+}
+
 // попап изображения карточки
 function openShowImagePopup() {
   openPopup(popupShowImage);
@@ -118,6 +138,12 @@ function openShowImagePopup() {
 
 function closeShowImagePopup() {
   closePopup(popupShowImage);
+}
+
+function closeShowImagePopupOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closeShowImagePopup();
+  }
 }
 
 // отправка данных, редактирование профиля
@@ -138,17 +164,20 @@ function handleCreatCardFormSubmit(evt) {
   closeNewPlacePopup();
 }
 
-
 // попап редактирования профиля
 profileButtonEdit.addEventListener('click', openEditProfilePopup);
+popupProfileEdit.addEventListener('click', closeEditProfilePopupOverlay);
 toggleProfileEdit.addEventListener('click', closeEditProfilePopup);
 
 // попап добавления нового места
 profileButtonAdd.addEventListener('click', openNewPlacePopup);
+popupNewPlace.addEventListener('click', closeNewPlacePopupOverlay);
 toggleNewPlace.addEventListener('click', closeNewPlacePopup);
 
 // попап изображения карточки
+popupShowImage.addEventListener('click', closeShowImagePopupOverlay);
 toggleShowImage.addEventListener('click', closeShowImagePopup);
+
 
 // submit редактирования профиля 
 dataProfileEdit.addEventListener('submit', handleProfileFormSubmit);

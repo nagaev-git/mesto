@@ -40,8 +40,8 @@
                 <div class="form">
                     <h2 class="form__title">Редактировать профиль</h2>
                     <form name="form_edit-profile" class="form__data">
-                        <input type="text" name="user" value="" placeholder="Ваше имя" maxlength="30" required class="form__input form__input_js_name">
-                        <input type="text" name="job" value="" placeholder="Ваша профессия" maxlength="80" required class="form__input form__input_js_job">
+                        <input type="text" name="user" value="" placeholder="Ваше имя" minlength="2" maxlength="40" required class="form__input form__input_js_name">
+                        <input type="text" name="job" value="" placeholder="Ваша профессия" minlength="2" maxlength="200" required class="form__input form__input_js_job">
                         <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
                     </form>
                 </div>
@@ -53,8 +53,8 @@
                 <div class="form">
                     <h2 class="form__title">Новое место</h2>
                     <form name="form_new-place" class="form__data">
-                        <input type="text" name="place" value="" placeholder="Название" maxlength="30" required class="form__input form__input_js_place">
-                        <input type="url" name="link" value="" placeholder="Ссылка на кртинку" maxlength="80" required class="form__input form__input_js_link">
+                        <input type="text" name="place" value="" placeholder="Название" minlength="2" maxlength="30" required class="form__input form__input_js_place">
+                        <input type="url" name="link" value="" placeholder="Ссылка на кртинку" required class="form__input form__input_js_link">
                         <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
                     </form>
                 </div>
