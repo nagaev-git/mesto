@@ -1,4 +1,6 @@
 // блоки попап
+const popupItem = document.querySelector('.popup')
+
 const popupProfileEdit = document.querySelector('.popup_edit-profile');
 const toggleProfileEdit = popupProfileEdit.querySelector('.popup__toggle');
 const dataProfileEdit = popupProfileEdit.querySelector('.form__data');
@@ -27,6 +29,14 @@ const cardsList = document.querySelector('.cards__list');
 // елементы попапа с изображением карточки
 const imageItem = document.querySelector('.image__item');
 const imageTitle = document.querySelector('.image__caption');
+// функция закрытия попапа с кнопки
+const keyEscape = 'Escape';
+const presEscape = function(evt) {
+  if (evt.key === keyEscape) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 
 
 // создание карточек на странице
@@ -84,19 +94,21 @@ function showImageCard(evt) {
 // открыть попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  addListenerPopupEscape()
+}
+
+function addListenerPopupEscape() {
+  document.addEventListener('keydown', presEscape);
 }
 // закрыть попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  removeListenerPopupEscape()
 }
 
-// function keyDownEscapePopup(item) {
-//   item.addEventListener('keydown', function(evt) {
-//     if (evt.key === 'Escape') {
-//       console.log('ok');
-//     }
-//   })
-// }
+function removeListenerPopupEscape() {
+  document.removeEventListener('keydown', presEscape);
+}
 
 // попап редактирования профиля
 function openEditProfilePopup(evt) {
@@ -164,6 +176,7 @@ function handleCreatCardFormSubmit(evt) {
   closeNewPlacePopup();
 }
 
+
 // попап редактирования профиля
 profileButtonEdit.addEventListener('click', openEditProfilePopup);
 popupProfileEdit.addEventListener('click', closeEditProfilePopupOverlay);
@@ -173,6 +186,7 @@ toggleProfileEdit.addEventListener('click', closeEditProfilePopup);
 profileButtonAdd.addEventListener('click', openNewPlacePopup);
 popupNewPlace.addEventListener('click', closeNewPlacePopupOverlay);
 toggleNewPlace.addEventListener('click', closeNewPlacePopup);
+popupNewPlace.addEventListener('keydown', presEscape);
 
 // попап изображения карточки
 popupShowImage.addEventListener('click', closeShowImagePopupOverlay);
