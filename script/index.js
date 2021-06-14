@@ -8,6 +8,7 @@ const dataProfileEdit = popupProfileEdit.querySelector('.form__data');
 const popupNewPlace = document.querySelector('.popup_new-place');
 const toggleNewPlace = popupNewPlace.querySelector('.popup__toggle');
 const dataNewPlace = popupNewPlace.querySelector('.form__data');
+const buttonNewPlace = popupNewPlace.querySelector('.form__button');
 
 const popupShowImage = document.querySelector('.popup_show-image');
 const toggleShowImage = popupShowImage.querySelector('.popup__toggle');
@@ -130,6 +131,8 @@ function closeEditProfilePopupOverlay(evt) {
 // попап добавления нового места
 function openNewPlacePopup() {
   dataNewPlace.reset();
+  buttonNewPlace.classList.add('form__button_disable');
+  buttonNewPlace.setAttribute('disabled', 'disabled');
   openPopup(popupNewPlace);
 }
 
