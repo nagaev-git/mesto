@@ -39,10 +39,12 @@
                 <button type="button" aria-label="Закрыть окно" class="popup__toggle"></button>
                 <div class="form">
                     <h2 class="form__title">Редактировать профиль</h2>
-                    <form name="form_edit-profile" class="form__data">
-                        <input type="text" name="user" value="" placeholder="Ваше имя" maxlength="30" required class="form__input form__input_js_name">
-                        <input type="text" name="job" value="" placeholder="Ваша профессия" maxlength="80" required class="form__input form__input_js_job">
-                        <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
+                    <form name="edit-profile" class="form__data" novalidate>
+                        <input type="text" id="user" name="user" value="" placeholder="Ваше имя" minlength="2" maxlength="40" required class="form__input form__input_js_name">
+                        <span id="user-error" class="form__error"></span>
+                        <input type="text" id="job" name="job" value="" placeholder="Ваша профессия" minlength="2" maxlength="200" required class="form__input form__input_js_job">
+                        <span id="job-error" class="form__error"></span>
+                        <button type="submit" class="form__button form__button_enable" aria-label="Сохранить ввод">Сохранить</button>
                     </form>
                 </div>
             </div>
@@ -52,10 +54,12 @@
                 <button type="button" aria-label="Закрыть окно" class="popup__toggle"></button>
                 <div class="form">
                     <h2 class="form__title">Новое место</h2>
-                    <form name="form_new-place" class="form__data">
-                        <input type="text" name="place" value="" placeholder="Название" maxlength="30" required class="form__input form__input_js_place">
-                        <input type="url" name="link" value="" placeholder="Ссылка на кртинку" maxlength="80" required class="form__input form__input_js_link">
-                        <button type="submit" class="form__button" aria-label="Сохранить ввод">Сохранить</button>
+                    <form name="new-place" class="form__data" novalidate>
+                        <input type="text" id="place" name="place" value="" placeholder="Название" minlength="2" maxlength="30" required class="form__input form__input_js_place">
+                        <span id="place-error" class="form__error"></span>
+                        <input type="url" id="link" name="link" value="" placeholder="Ссылка на кртинку" required class="form__input form__input_js_link">
+                        <span id="link-error" class="form__error"></span>
+                        <button type="submit" class="form__button form__button_disable" aria-label="Сохранить ввод" disabled>Сохранить</button>
                     </form>
                 </div>
             </div>
@@ -79,6 +83,7 @@
         </template>
     </div>
     <script src="./script/initial-cards.js"></script>
-    <script src="./script/main.js"></script>
+    <script src="./script/index.js"></script>
+    <script src="./script/validate.js"></script>
 </body> 
 </html>
