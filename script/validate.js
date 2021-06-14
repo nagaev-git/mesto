@@ -1,46 +1,42 @@
-function enableValidation() {
-    const formNewPlace = document.querySelector('.form__data[name="new-place"]');
+// функция валидации
+function enableValidation(config) {
+    const formNewPlace = document.querySelector(config.form);
 
     formNewPlace.addEventListener('submit', handleFormSubmit);
-    formNewPlace.addEventListener('input', handleFormInput);
-
-    const formEditProfile = document.querySelector('.form__data[name="edit-profile"]');
-
-    formEditProfile.addEventListener('submit', handleFormSubmit);
-    formEditProfile.addEventListener('input', handleFormInput);
+    formNewPlace.addEventListener('input', (evt) => handleFormInput(evt, config));
 }
-
+// отправка формы
 function handleFormSubmit(evt) {
     evt.preventDefault();
 }
-
-function handleFormInput(evt) {
+// валидация инпутов
+function handleFormInput(evt, config) {
     const input = evt.target;
     const form = evt.currentTarget;
 
-    setCustomError(input);
+    setCustomError(input, config);
 
     setFieldError(input);
 
-    setSubmitButtonState(form);
+    setSubmitButtonState(form, config);
 }
-
-function setSubmitButtonState(form) {
-    const button = form.querySelector('.form__button');
+// активация кнопки отправки
+function setSubmitButtonState(form, config) {
+    const button = form.querySelector(config.formButton);
     const isValid = form.checkValidity();
 
     if (isValid) {
-        button.classList.remove('form__button_disable');
-        button.classList.add('form__button_enable');
+        button.classList.remove(config.buttonDisable);
+        button.classList.add(config.buttonEnable);
         button.removeAttribute('disabled');
     } else {
-        button.classList.remove('form__button_enable');
-        button.classList.add('form__button_disable');
+        button.classList.remove(config.buttonEnable);
+        button.classList.add(config.buttonDisable);
         button.setAttribute('disabled', 'disabled');
     }
 }
-
-function setCustomError(input) {
+// отправка сообщений об ошибке в валидации
+function setCustomError(input, config) {
     const validity = input.validity;
 
     input.setCustomValidity('');
@@ -52,13 +48,26 @@ function setCustomError(input) {
     }
 
     if (validity.typeMismatch) {
-        input.setCustomValidity('Введите адрес сайта.');
+        input.setCustomValidity(config.missmatchErrorMessage);
     }
 }
-
+// span с сообщением об ошибке
 function setFieldError(input) {
     const spanError = document.querySelector(`#${input.id}-error`);
     spanError.textContent = input.validationMessage;
 }
-
-enableValidation(); 
+// валидация формы новое место
+enableValidation({
+    form: '.form__data[name="new-place"]',
+    formButton: '.form__button',
+    missmatchErrorMessage: 'Введите адрес сайта.',
+    buttonDisable: 'form__button_disable',
+    buttonEnable: 'form__button_enable'
+});
+// валидация формы редактировать профиль
+enableValidation({
+    form: '.form__data[name="edit-profile"]',
+    formButton: '.form__button',
+    buttonDisable: 'form__button_disable',
+    buttonEnable: 'form__button_enable'
+});
