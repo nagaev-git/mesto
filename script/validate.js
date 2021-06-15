@@ -1,9 +1,9 @@
 // функция валидации
 function enableValidation(config) {
-    const formNewPlace = document.querySelector(config.form);
+    const form = document.querySelector(config.form);
 
-    formNewPlace.addEventListener('submit', handleFormSubmit);
-    formNewPlace.addEventListener('input', (evt) => handleFormInput(evt, config));
+    form.addEventListener('submit', handleFormSubmit);
+    form.addEventListener('input', (evt) => handleFormInput(evt, config));
 }
 // отправка формы
 function handleFormSubmit(evt) {
