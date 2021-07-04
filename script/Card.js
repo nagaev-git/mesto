@@ -5,28 +5,31 @@ const titleImagePopupShowImage = document.querySelector('.image__caption');
 import { openPopup } from './index.js';
 
 export default class Card {
-    constructor(data) {
+    constructor(data, cardSelector) {
       this._name = data.name;
       this._link = data.link;
+      this._cardSelector = cardSelector;
     }
   
     _getTemplate() {
       const cardElement = document
-        .querySelector('.card-template')
+        .querySelector(this._cardSelector)
         .content
         .querySelector('.card')
         .cloneNode(true);
-  
       return cardElement;
     }
     
     generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
-  
-      this._element.querySelector('.card__image').src = this._link;
-      this._element.querySelector('.card__image').alt = this._name;
-      this._element.querySelector('.card__title').textContent = this._name;
+      
+      const image = this._element.querySelector('.card__image');
+      const title = this._element.querySelector('.card__title');
+
+      image.src = this._link;
+      image.alt = this._name;
+      title.textContent = this._name;
   
       return this._element;
     }

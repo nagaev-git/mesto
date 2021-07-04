@@ -15,17 +15,26 @@ const SubmitButtonNewPlace = popupNewPlace.querySelector('.form__button');
 
 const popupShowImage = document.querySelector('.popup_show-image');
 const buttonClosePopupShowImage = popupShowImage.querySelector('.popup__toggle');
+
 // редактирование профиля
 const profileSection = document.querySelector('.profile');
 const buttonOpenPopupProfileEdit = profileSection.querySelector('.profile__button-edit');
 const buttonOpenPopupNewPlace = profileSection.querySelector('.profile__button-add');
 const profileName = profileSection.querySelector('.profile__name');
 const profileJob = profileSection.querySelector('.profile__job');
+
 // инпуты формы
 const inputNameFormProfileEdit = document.querySelector('.form__input_js_name');
 const inputJobFormProfileEdit = document.querySelector('.form__input_js_job');
 const inputPlaceFormNewPlace = document.querySelector('.form__input_js_place');
 const inputLinkFormNewPlace = document.querySelector('.form__input_js_link');
+
+// список карточек
+const cardList = document.querySelector('.cards__list');
+
+// селектор шаблона карточки
+const cardSelector = '.card-template';
+
 // объекты класса валидации
 const validationConfig = {
   formButton: '.form__button',
@@ -34,16 +43,18 @@ const validationConfig = {
   buttonEnable: 'form__button_enable'
 }
 
-const profileValidation = createFormValidatorObj(validationConfig, formDataProfileEdit);
-const placeValidation = createFormValidatorObj(validationConfig, formDataNewPlace);
-
-//Функция создание объекта валидации
-function createFormValidatorObj (config, formElement) {
-  return new FormValidator(config, formElement);
-}
-// функция закрытия попапа с кнопки
+// значение клавиши esc
 const keyEscape = 'Escape';
-const pressEscape = function(evt) {
+
+// валидация форм
+const profileValidation = new FormValidator(validationConfig, formDataProfileEdit);
+profileValidation.enableValidation();
+
+const placeValidation = new FormValidator(validationConfig, formDataNewPlace);
+placeValidation.enableValidation();
+
+// функция закрытия попапа с кнопки
+function pressEscape(evt) {
   if (evt.key === keyEscape) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -53,19 +64,12 @@ const pressEscape = function(evt) {
 // открыть попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  addListenerPopupEscape()
-}
-
-function addListenerPopupEscape() {
   document.addEventListener('keydown', pressEscape);
 }
+
 // закрыть попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  removeListenerPopupEscape()
-}
-
-function removeListenerPopupEscape() {
   document.removeEventListener('keydown', pressEscape);
 }
 
@@ -76,13 +80,9 @@ function openEditProfilePopup(evt) {
   openPopup(popupProfileEdit);
 }
 
-function closeEditProfilePopup() {
-  closePopup(popupProfileEdit);
-}
-
 function closeEditProfilePopupOverlay(evt) {
   if (evt.target.classList.contains('popup')) {
-    closeEditProfilePopup();
+    closePopup(popupProfileEdit);
   }
 }
 
@@ -94,24 +94,15 @@ function openNewPlacePopup() {
   openPopup(popupNewPlace);
 }
 
-function closeNewPlacePopup() {
-  closePopup(popupNewPlace);
-}
-
 function closeNewPlacePopupOverlay(evt) {
   if (evt.target.classList.contains('popup')) {
-    closeNewPlacePopup();
+    closePopup(popupNewPlace);
   }
 }
-
 // попап изображения карточки
-function closeShowImagePopup() {
-  closePopup(popupShowImage);
-}
-
 function closeShowImagePopupOverlay(evt) {
   if (evt.target.classList.contains('popup')) {
-    closeShowImagePopup();
+    closePopup(popupShowImage);
   }
 }
 
@@ -120,7 +111,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = inputNameFormProfileEdit.value;
   profileJob.textContent = inputJobFormProfileEdit.value;
-  closeEditProfilePopup();
+  closePopup(popupProfileEdit);
 }
 
 // отправка данных, создание новой карточки
@@ -128,26 +119,26 @@ export function handleCreatCardFormSubmit(evt) {
   evt.preventDefault();
   const name = inputPlaceFormNewPlace.value;
   const link = inputLinkFormNewPlace.value;
-  const card = new Card({name, link});
+  const card = new Card({name, link}, cardSelector);
   const cardElement = card.generateCard();
-  document.querySelector('.cards__list').prepend(cardElement);
-  closeNewPlacePopup();
+  cardList.prepend(cardElement);
+  closePopup(popupNewPlace);
 }
 
 
 // попап редактирования профиля
 buttonOpenPopupProfileEdit.addEventListener('click', openEditProfilePopup);
 popupProfileEdit.addEventListener('click', closeEditProfilePopupOverlay);
-buttonClosePopupProfileEdit.addEventListener('click', closeEditProfilePopup);
+buttonClosePopupProfileEdit.addEventListener('click', () => closePopup(popupProfileEdit));
 
 // попап добавления нового места
 buttonOpenPopupNewPlace.addEventListener('click', openNewPlacePopup);
 popupNewPlace.addEventListener('click', closeNewPlacePopupOverlay);
-buttonClosePopupNewPlace.addEventListener('click', closeNewPlacePopup);
+buttonClosePopupNewPlace.addEventListener('click', () => closePopup(popupNewPlace));
 
 // попап изображения карточки
 popupShowImage.addEventListener('click', closeShowImagePopupOverlay);
-buttonClosePopupShowImage.addEventListener('click', closeShowImagePopup);
+buttonClosePopupShowImage.addEventListener('click', () => closePopup(popupShowImage));
 
 
 // submit редактирования профиля 
@@ -155,13 +146,10 @@ formDataProfileEdit.addEventListener('submit', handleProfileFormSubmit);
 
 // submit новой карточки
 formDataNewPlace.addEventListener('submit', handleCreatCardFormSubmit);
+
 // отобрашение шаблонных карточек
-initialCards.forEach((item) => {
-  const card = new Card(item);
+initialCards.forEach((data) => {
+  const card = new Card(data, cardSelector);
   const cardElement = card.generateCard();
-
-  document.querySelector('.cards__list').prepend(cardElement);
+  cardList.prepend(cardElement);
 });
-
-profileValidation.enableValidation();
-placeValidation.enableValidation();
