@@ -46,7 +46,6 @@ export default class Card {
       itemImagePopupShowImage.src = this._link;
       titleImagePopupShowImage.textContent = this._name;
       titleImagePopupShowImage.alt = this._name;
-      popupShowImage.classList.add('popup_opened');
       openPopup(popupShowImage);
     }
       
