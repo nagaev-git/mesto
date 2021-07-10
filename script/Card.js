@@ -2,7 +2,7 @@ const popupShowImage = document.querySelector('.popup_show-image');
 const itemImagePopupShowImage = document.querySelector('.image__item');
 const titleImagePopupShowImage = document.querySelector('.image__caption');
 
-import { openPopup } from './index.js';
+import { openPopup } from '../src/index.js';
 
 export default class Card {
     constructor(data, cardSelector) {

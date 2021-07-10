@@ -1,8 +1,8 @@
-import '../pages/index.css'; // импорт главного файла стилей
+import './index.css'; // импорт главного файла стилей
 
-import Card from "./Card.js";
-import { initialCards } from "./initial-cards.js";
-import FormValidator from "./FormValidator.js";
+import Card from "../script/Card.js";
+import { initialCards } from "../script/initial-cards.js";
+import FormValidator from "../script/FormValidator.js";
 export { openPopup };
 
 // блоки попап
