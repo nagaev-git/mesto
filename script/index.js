@@ -1,3 +1,5 @@
+import '../pages/index.css'; // импорт главного файла стилей
+
 import Card from "./Card.js";
 import { initialCards } from "./initial-cards.js";
 import FormValidator from "./FormValidator.js";
