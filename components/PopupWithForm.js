@@ -7,13 +7,13 @@ export default class PopupWithForm extends Popup {
         this._submitForm = submitForm;
         this._formData = this._popupContainer.querySelector('.form__data')
     }
-
+// закрытие попапа, сброс инпутов, удаление обработчика
     close() {
         super.close();
         this._formData.reset();
         this._formData.removeEventListener('submit', this._submitForm);
     }
-
+// перебор инпутов
     _getInputValues() {
         const inputsForm = this._formData.querySelectorAll('.form__input');
 
@@ -24,12 +24,11 @@ export default class PopupWithForm extends Popup {
             inputsForm.forEach(input => {
                 objData[input.name] = input.value;
             });
-            console.log(objData)
             return objData;
         }
         
     }
-
+// обработчик submita
     setEventListeners() {
         super.setEventListeners();
         this._formData.addEventListener('submit', (evt) => {

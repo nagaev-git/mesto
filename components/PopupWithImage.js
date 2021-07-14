@@ -7,7 +7,7 @@ export default class PopupWithImage extends Popup {
         this._itemImagePopupShowImage = document.querySelector('.image__item');
         this._titleImagePopupShowImage = document.querySelector('.image__caption');
     }
-
+// открытие попапа изображения карточки
     open(evt) {
         const element = evt.target;
 

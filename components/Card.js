@@ -1,9 +1,3 @@
-// const popupShowImage = document.querySelector('.popup_show-image');
-// const itemImagePopupShowImage = document.querySelector('.image__item');
-// const titleImagePopupShowImage = document.querySelector('.image__caption');
-
-// import { openPopup } from '../src/index.js';
-
 export default class Card {
     constructor(data, cardSelector, imagePopup) {
       this._name = data.name;
@@ -11,7 +5,7 @@ export default class Card {
       this._cardSelector = cardSelector;
       this._imagePopup = imagePopup;
     }
-  
+//  шаблон карточки
     _getTemplate() {
       const cardElement = document
         .querySelector(this._cardSelector)
@@ -20,7 +14,7 @@ export default class Card {
         .cloneNode(true);
       return cardElement;
     }
-    
+//  созданик карточки и навешивание обработчиков
     generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
@@ -34,22 +28,15 @@ export default class Card {
   
       return this._element;
     }
-
+//  удалить карточку
     _deleteCardElement() {
       this._element.closest('.card').remove();
     }
-
+//  лайк карточки
     _toggleLikeCard() {
       this._element.querySelector('.card__like').classList.toggle('card__like_active');
     }
-
-    // _handleOpenPopup() {
-    //   itemImagePopupShowImage.src = this._link;
-    //   titleImagePopupShowImage.textContent = this._name;
-    //   titleImagePopupShowImage.alt = this._name;
-    //   openPopup(popupShowImage);
-    // }
-      
+//  обрабочкики карточки
     _setEventListeners() {
       this._element.querySelector('.card__image').addEventListener('click', (evt) => {
         this._imagePopup(evt);
