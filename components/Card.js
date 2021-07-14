@@ -1,16 +1,11 @@
-const popupShowImage = document.querySelector('.popup_show-image');
-const itemImagePopupShowImage = document.querySelector('.image__item');
-const titleImagePopupShowImage = document.querySelector('.image__caption');
-
-import { openPopup } from './index.js';
-
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, imagePopup) {
       this._name = data.name;
       this._link = data.link;
       this._cardSelector = cardSelector;
+      this._imagePopup = imagePopup;
     }
-  
+//  шаблон карточки
     _getTemplate() {
       const cardElement = document
         .querySelector(this._cardSelector)
@@ -19,39 +14,32 @@ export default class Card {
         .cloneNode(true);
       return cardElement;
     }
-    
+//  созданик карточки и навешивание обработчиков
     generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
       
-      const image = this._element.querySelector('.card__image');
-      const title = this._element.querySelector('.card__title');
+      this._image = this._element.querySelector('.card__image');
+      this._title = this._element.querySelector('.card__title');
 
-      image.src = this._link;
-      image.alt = this._name;
-      title.textContent = this._name;
+      this._image.src = this._link;
+      this._image.alt = this._name;
+      this._title.textContent = this._name;
   
       return this._element;
     }
-
+//  удалить карточку
     _deleteCardElement() {
       this._element.closest('.card').remove();
     }
-
+//  лайк карточки
     _toggleLikeCard() {
       this._element.querySelector('.card__like').classList.toggle('card__like_active');
     }
-
-    _handleOpenPopup() {
-      itemImagePopupShowImage.src = this._link;
-      titleImagePopupShowImage.textContent = this._name;
-      titleImagePopupShowImage.alt = this._name;
-      openPopup(popupShowImage);
-    }
-      
+//  обрабочкики карточки
     _setEventListeners() {
-      this._element.querySelector('.card__image').addEventListener('click', () => {
-        this._handleOpenPopup();
+      this._element.querySelector('.card__image').addEventListener('click', (evt) => {
+        this._imagePopup(evt);
       });
 
       this._element.querySelector('.card__like').addEventListener('click', () => {
