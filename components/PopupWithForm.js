@@ -17,16 +17,13 @@ export default class PopupWithForm extends Popup {
     _getInputValues() {
         const inputsForm = this._formData.querySelectorAll('.form__input');
 
-        let objData = {};
-        if (objData === null) {
-            return
-        } else {
-            inputsForm.forEach(input => {
-                objData[input.name] = input.value;
-            });
-            return objData;
-        }
-        
+        const objData = {};
+
+        inputsForm.forEach(input => {
+            objData[input.name] = input.value;
+        });
+
+        return objData;
     }
 // обработчик submita
     setEventListeners() {
