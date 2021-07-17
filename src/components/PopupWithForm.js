@@ -5,28 +5,23 @@ export default class PopupWithForm extends Popup {
         super(popupSelector);
         
         this._submitForm = submitForm;
-        this._formData = this._popupContainer.querySelector('.form__data')
+        this._formData = this._popupContainer.querySelector('.form__data');
+        this._formInput = this._formData.querySelectorAll('.form__input');
     }
 // закрытие попапа, сброс инпутов, удаление обработчика
     close() {
         super.close();
         this._formData.reset();
-        this._formData.removeEventListener('submit', this._submitForm);
     }
 // перебор инпутов
     _getInputValues() {
-        const inputsForm = this._formData.querySelectorAll('.form__input');
+        const inputValue = {};
 
-        let objData = {};
-        if (objData === null) {
-            return
-        } else {
-            inputsForm.forEach(input => {
-                objData[input.name] = input.value;
-            });
-            return objData;
-        }
-        
+        this._formInput.forEach(input => {
+            inputValue[input.name] = input.value;
+        });
+
+        return inputValue;
     }
 // обработчик submita
     setEventListeners() {

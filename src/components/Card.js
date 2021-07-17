@@ -38,8 +38,8 @@ export default class Card {
     }
 //  обрабочкики карточки
     _setEventListeners() {
-      this._element.querySelector('.card__image').addEventListener('click', (evt) => {
-        this._imagePopup(evt);
+      this._element.querySelector('.card__image').addEventListener('click', () => {
+        this._imagePopup({name: this._name, link: this._link});
       });
 
       this._element.querySelector('.card__like').addEventListener('click', () => {
