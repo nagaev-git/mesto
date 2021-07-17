@@ -11,6 +11,7 @@ import {
   formDataNewPlace,
   buttonOpenPopupProfileEdit,
   buttonOpenPopupNewPlace,
+  buttonSavePopupNewPlace,
   inputNameFormProfileEdit,
   inputJobFormProfileEdit,
   cardList,
@@ -28,7 +29,21 @@ profileValidation.enableValidation();
 const placeValidation = new FormValidator(validationConfig, formDataNewPlace);
 placeValidation.enableValidation();
 
+// создание экземпляра карточки
+const createCard = (item) => {
+  const card = new Card(
+    item, 
+    cardSelector, 
+    imagePopup.open.bind(imagePopup)
+    )
+    .generateCard();
+  return card;
+}
 
+const createCardWithForm = (item) => {
+  const newCard = createCard(item);
+  cardSection.addItem(newCard);
+}
 
 // отправка данных, редактирование профиля
 const handleProfileFormSubmit = ({user, job}) => {
@@ -39,15 +54,8 @@ const handleProfileFormSubmit = ({user, job}) => {
 // отправка данных, создание новой карточки
 const handleCreatCardFormSubmit = ({place, link}) => {
   const newCard = {name: place, link: link};
-  section.addItem(newCard);
+  createCardWithForm(newCard);
   createCardPopup.close();
-}
-
-//Колбек отрисовки карточки. Создаёт карточку и добавляет её в контейнер
-const renderer = (item, container) => {
-  const card = new Card(item, cardSelector, imagePopup.open.bind(imagePopup));
-  const cardElement = card.generateCard();
-  container.prepend(cardElement);
 }
 
 // открыть попап редактирования профиля
@@ -60,6 +68,8 @@ const openPopupProfile = () => {
 
 // открыть попап создания новой карточки
 const openPopupNewPlace = () => {
+  buttonSavePopupNewPlace.classList.remove('form__button_enable');
+  buttonSavePopupNewPlace.setAttribute('disabled', 'disabled');
   createCardPopup.open();
 }
 
@@ -73,7 +83,13 @@ const editProfilePopup = new PopupWithForm('.popup_edit-profile', handleProfileF
 // попап создания новой карточки
 const createCardPopup = new PopupWithForm('.popup_new-place', handleCreatCardFormSubmit);
 // создание секции
-const section = new Section({initialCards, renderer}, cardList);
+const cardSection = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = createCard(item);
+    cardSection.addItem(card);
+  }
+}, cardList)
 
 
 
@@ -82,6 +98,10 @@ buttonOpenPopupProfileEdit.addEventListener('click', openPopupProfile);
 // слушатель открытия попапа новой карточки
 buttonOpenPopupNewPlace.addEventListener('click', openPopupNewPlace);
 
+// навешиваем слушатели на попапы
+imagePopup.setEventListeners();
+editProfilePopup.setEventListeners();
+createCardPopup.setEventListeners();
 
 //Рендерим начальные карточки
-section.renderItems();
+cardSection.renderItems();

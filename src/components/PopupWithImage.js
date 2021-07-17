@@ -8,12 +8,10 @@ export default class PopupWithImage extends Popup {
         this._titleImagePopupShowImage = document.querySelector('.image__caption');
     }
 // открытие попапа изображения карточки
-    open(evt) {
-        const element = evt.target;
-
-        this._itemImagePopupShowImage.src = element.src;
-        this._itemImagePopupShowImage.alt = element.alt;
-        this._titleImagePopupShowImage.textContent = element.alt;
+    open({link, name}) {
+        this._itemImagePopupShowImage.src = link;
+        this._itemImagePopupShowImage.alt = name;
+        this._titleImagePopupShowImage.textContent = name;
 
         super.open();
     }
