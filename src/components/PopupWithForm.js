@@ -6,7 +6,7 @@ export default class PopupWithForm extends Popup {
         
         this._submitForm = submitForm;
         this._formData = this._popupContainer.querySelector('.form__data');
-        this._formInput = this._formData.querySelectorAll('.form__input');
+        this._cardList = this._formData.querySelectorAll('.form__input');
     }
 // закрытие попапа, сброс инпутов, удаление обработчика
     close() {
@@ -17,7 +17,7 @@ export default class PopupWithForm extends Popup {
     _getInputValues() {
         const inputValue = {};
 
-        this._formInput.forEach(input => {
+        this._cardList.forEach(input => {
             inputValue[input.name] = input.value;
         });
 

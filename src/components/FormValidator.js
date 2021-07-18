@@ -23,10 +23,10 @@ export default class FormValidator {
 
         this._setFieldError();
 
-        this._setSubmitButtonState();
+        this.setSubmitButtonState();
     }
     // активация кнопки отправки
-    _setSubmitButtonState() {
+    setSubmitButtonState() {
         const button = this._formElement.querySelector(this._formButton);
         const isValid = this._formElement.checkValidity();
     

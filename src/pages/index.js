@@ -11,7 +11,6 @@ import {
   formDataNewPlace,
   buttonOpenPopupProfileEdit,
   buttonOpenPopupNewPlace,
-  buttonSavePopupNewPlace,
   inputNameFormProfileEdit,
   inputJobFormProfileEdit,
   cardList,
@@ -68,8 +67,7 @@ const openPopupProfile = () => {
 
 // открыть попап создания новой карточки
 const openPopupNewPlace = () => {
-  buttonSavePopupNewPlace.classList.remove('form__button_enable');
-  buttonSavePopupNewPlace.setAttribute('disabled', 'disabled');
+  placeValidation.setSubmitButtonState();
   createCardPopup.open();
 }
 
