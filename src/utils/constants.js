@@ -4,7 +4,6 @@ export const formDataProfileEdit = popupProfileEdit.querySelector('.form__data')
 
 export const popupNewPlace = document.querySelector('.popup_new-place');
 export const formDataNewPlace = popupNewPlace.querySelector('.form__data');
-export const buttonSavePopupNewPlace = popupNewPlace.querySelector('.form__button');
 
 // редактирование профиля
 export const profileSection = document.querySelector('.profile');
