@@ -4,6 +4,7 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/heder__logo.css);
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__overlay/profile__overlay.css);
 @import url(../blocks/profile/__image/profile__image.css);
 @import url(../blocks/profile/__items/profile__items.css);
 @import url(../blocks/profile/__info/profile__info.css);
