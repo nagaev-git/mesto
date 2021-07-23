@@ -21,3 +21,15 @@
     
     background: rgba(0, 0, 0, 0.8);
 }
+
+@media screen and (max-width: 900px) {
+    .profile__overlay {
+        margin-left: 25px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .profile__overlay {
+        margin-left: 0;
+    }
+}
