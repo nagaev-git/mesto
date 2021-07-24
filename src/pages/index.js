@@ -61,9 +61,16 @@ const handleCreatCardFormSubmit = ({place, link}) => {
   createCardWithForm(newCard);
   createCardPopup.close();
 }
-
-const handleAvatarFormSubmit = () => {
-  editAvatarPopup.close();
+// отправка данных, изменить аватар
+const handleAvatarFormSubmit = ({avatar}) => {
+  const editAvatarPromise = api.editUserAvatar(avatar);
+  
+  editAvatarPromise.then(data => {
+    userInfo.setUserAvatar(data.avatar);
+    editAvatarPopup.close();
+    }).catch((err) => {
+      console.log(err)
+    });
 }
 
 // открыть попап редактирования профиля
