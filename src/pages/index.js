@@ -38,16 +38,24 @@ const createCard = (item) => {
   const card = new Card(
     item, 
     cardSelector, 
-    imagePopup.open.bind(imagePopup)
+    imagePopup.open.bind(imagePopup),
+    userInfo.getUserInfo(),
+    handleDeleteCard
     )
     .generateCard();
   return card;
 }
 
+// создание карточки из попапа
 const createCardWithForm = (item) => {
   const newCard = createCard(item);
   const cardSection = new Section({}, cardList)
   cardSection.addItem(newCard);
+}
+
+// удаление карточки
+const handleDeleteCard = (data) => {
+  return api.deleteCard(data._id);
 }
 
 // отправка данных, редактирование профиля
