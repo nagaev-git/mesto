@@ -10,8 +10,10 @@ import UserInfo from '../components/UserInfo.js';
 import {
   formDataProfileEdit,
   formDataNewPlace,
+  formDataAvatar,
   buttonOpenPopupProfileEdit,
   buttonOpenPopupNewPlace,
+  buttonOpenPopupAvatar,
   inputNameFormProfileEdit,
   inputJobFormProfileEdit,
   cardList,
@@ -27,6 +29,9 @@ profileValidation.enableValidation();
 
 const placeValidation = new FormValidator(validationConfig, formDataNewPlace);
 placeValidation.enableValidation();
+
+const avatarValidation = new FormValidator(validationConfig, formDataAvatar);
+avatarValidation.enableValidation();
 
 // создание экземпляра карточки
 const createCard = (item) => {
@@ -57,6 +62,10 @@ const handleCreatCardFormSubmit = ({place, link}) => {
   createCardPopup.close();
 }
 
+const handleAvatarFormSubmit = () => {
+  editAvatarPopup.close();
+}
+
 // открыть попап редактирования профиля
 const openPopupProfile = () => {
   const profileData = userInfo.getUserInfo();
@@ -71,6 +80,11 @@ const openPopupNewPlace = () => {
   createCardPopup.open();
 }
 
+// открыть попап редактирования аватара
+const openPopupAvatar = () => {
+  avatarValidation.setSubmitButtonState();
+  editAvatarPopup.open();
+}
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-26',
@@ -123,14 +137,8 @@ const imagePopup = new PopupWithImage('.popup_show-image');
 const editProfilePopup = new PopupWithForm('.popup_edit-profile', handleProfileFormSubmit);
 // попап создания новой карточки
 const createCardPopup = new PopupWithForm('.popup_new-place', handleCreatCardFormSubmit);
-// создание секции
-// const cardSection = new Section({
-//   items: data,
-//   renderer: (item) => {
-//     const card = createCard(item);
-//     cardSection.addItem(card);
-//   }
-// }, cardList)
+// попап редактирования аватара
+const editAvatarPopup = new PopupWithForm('.popup_update-avatar', handleAvatarFormSubmit);
 
 
 
@@ -138,8 +146,11 @@ const createCardPopup = new PopupWithForm('.popup_new-place', handleCreatCardFor
 buttonOpenPopupProfileEdit.addEventListener('click', openPopupProfile);
 // слушатель открытия попапа новой карточки
 buttonOpenPopupNewPlace.addEventListener('click', openPopupNewPlace);
+// слушатель открытия попапа аватара
+buttonOpenPopupAvatar.addEventListener('click', openPopupAvatar);
 
 // навешиваем слушатели на попапы
 imagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 createCardPopup.setEventListeners();
+editAvatarPopup.setEventListeners();
