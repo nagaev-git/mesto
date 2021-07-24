@@ -70,4 +70,11 @@ export default class Api {
             headers: this._headers,
         }).then(this._handleResponse);
     }
+
+    deleteCard(cardId) {
+        return fetch(`${this._url}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        }).then(this._handleResponse);
+    }
 }

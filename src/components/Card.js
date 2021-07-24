@@ -4,7 +4,7 @@ export default class Card {
       this._link = data.link;
       this._like = data.likes;
       this._ownerId = data.owner._id
-      this._userId = data._id
+      this._cardId = data._id
       this._cardSelector = cardSelector;
       this._imagePopup = imagePopup;
     }
@@ -31,9 +31,9 @@ export default class Card {
       this._title.textContent = this._name;
       this._likeCounter.textContent = this._like.length;
 
-      if (this._ownerId !== this._userId) {
-        this._buttonDelete.classList.add('card__delete_invisible');
-      }
+      // if (this._cardId !== this._userId) {
+      //   this._buttonDelete.classList.add('card__delete_invisible');
+      // }
   
       return this._element;
     }

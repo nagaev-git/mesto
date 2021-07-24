@@ -46,6 +46,7 @@ const createCard = (item) => {
 
 const createCardWithForm = (item) => {
   const newCard = createCard(item);
+  const cardSection = new Section({}, cardList)
   cardSection.addItem(newCard);
 }
 
@@ -57,14 +58,16 @@ const handleProfileFormSubmit = ({user, job}) => {
 
 // отправка данных, создание новой карточки
 const handleCreatCardFormSubmit = ({place, link}) => {
-  const newCard = {name: place, link: link};
-  createCardWithForm(newCard);
+  api.addCard(place, link)
+    .then(newCard => {
+      createCardWithForm(newCard);
+    })
   createCardPopup.close();
 }
 // отправка данных, изменить аватар
 const handleAvatarFormSubmit = ({avatar}) => {
   const editAvatarPromise = api.editUserAvatar(avatar);
-  
+
   editAvatarPromise.then(data => {
     userInfo.setUserAvatar(data.avatar);
     editAvatarPopup.close();
@@ -103,15 +106,16 @@ const api = new Api({
 
 // Получаем с сервера данные пользователя
 const userInfoPromise = api.getUserInfo();
-const serverUserInfo = (name, about, avatar) => {
+const serverUserInfo = (name, about, avatar, id) => {
   userInfo.setUserInfo(name, about);
+  userInfo.setUserId(id);
   if (avatar) {
     userInfo.setUserAvatar(avatar);
   }
 } 
 
 userInfoPromise.then(data => {
-  serverUserInfo(data.name, data.about, data.avatar)
+  serverUserInfo(data.name, data.about, data.avatar, data._id)
 })
   .catch((err) => {
     console.log(err);
@@ -124,13 +128,12 @@ initialCardFromServer.then(data => {
   const cardSection = new Section({
     items: data,
     renderer: (item) => {
-      // debugger
       const card = createCard(item);
       cardSection.addItem(card);
     }
   }, cardList);
 
-  cardSection.renderItems();
+  cardSection.renderItems(data.reverse());
 })
   .catch((err) => {
     console.log(err);
