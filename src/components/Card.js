@@ -2,6 +2,9 @@ export default class Card {
     constructor(data, cardSelector, imagePopup) {
       this._name = data.name;
       this._link = data.link;
+      this._like = data.likes;
+      this._ownerId = data.owner._id
+      this._userId = data._id
       this._cardSelector = cardSelector;
       this._imagePopup = imagePopup;
     }
@@ -21,10 +24,16 @@ export default class Card {
       
       this._image = this._element.querySelector('.card__image');
       this._title = this._element.querySelector('.card__title');
-
+      this._buttonDelete = this._element.querySelector('.card__delete');
+      this._likeCounter = this._element.querySelector('.card__like-counter');
       this._image.src = this._link;
       this._image.alt = this._name;
       this._title.textContent = this._name;
+      this._likeCounter.textContent = this._like.length;
+
+      if (this._ownerId !== this._userId) {
+        this._buttonDelete.classList.add('card__delete_invisible');
+      }
   
       return this._element;
     }

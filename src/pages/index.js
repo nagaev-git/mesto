@@ -17,7 +17,6 @@ import {
   cardList,
   cardSelector,
   validationConfig,
-  initialCards
 } from "../utils/constants.js";
 
 
@@ -83,10 +82,15 @@ const api = new Api({
 
 // Получаем с сервера данные пользователя
 const userInfoPromise = api.getUserInfo();
+const serverUserInfo = (name, about, avatar) => {
+  userInfo.setUserInfo(name, about);
+  if (avatar) {
+    userInfo.setUserAvatar(avatar);
+  }
+} 
 
 userInfoPromise.then(data => {
-  userInfo.setUserInfo(data.name, data.about);
-  userInfo.setUserAvatar(data.avatar);
+  serverUserInfo(data.name, data.about, data.avatar)
 })
   .catch((err) => {
     console.log(err);
@@ -99,6 +103,7 @@ initialCardFromServer.then(data => {
   const cardSection = new Section({
     items: data,
     renderer: (item) => {
+      // debugger
       const card = createCard(item);
       cardSection.addItem(card);
     }
