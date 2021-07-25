@@ -33,9 +33,9 @@ export default class Card {
       this._title.textContent = this._name;
       this._likeCounter.textContent = this._like.length;
 
-      // if (this._userId !== this._ownerId) {
-      //   this._buttonDelete.classList.add('card__delete_invisible');
-      // }
+      if (this._userId !== this._ownerId) {
+        this._buttonDelete.classList.add('card__delete_invisible');
+      }
   
       return this._element;
     }

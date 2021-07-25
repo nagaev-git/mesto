@@ -39,7 +39,7 @@ const createCard = (item) => {
     item, 
     cardSelector, 
     imagePopup.open.bind(imagePopup),
-    userInfo.getUserInfo(),
+    userInfo.getUserId(),
     handleDeleteCard
     )
     .generateCard();
