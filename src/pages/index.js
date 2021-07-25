@@ -40,7 +40,8 @@ const createCard = (item) => {
     cardSelector, 
     imagePopup.open.bind(imagePopup),
     userInfo.getUserId(),
-    handleDeleteCard
+    handleDeleteCard,
+    likeCardCallback
     )
     .generateCard();
   return card;
@@ -58,10 +59,33 @@ const handleDeleteCard = (data) => {
   return api.deleteCard(data._id);
 }
 
+//Колбек постановки или удаление лайка
+const likeCardCallback = (isLiked, data, card) => {
+  if (isLiked) {
+    api.addLikeCard(data._id)
+    .then(answer => {
+      card.setLikeCounter(answer.likes.length);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  } else {
+    api.deleteLikeCard(data._id)
+    .then(answer => {
+      card.setLikeCounter(answer.likes.length);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+}
+
 // отправка данных, редактирование профиля
 const handleProfileFormSubmit = ({user, job}) => {
-  userInfo.setUserInfo(user, job);
-  editProfilePopup.close();
+  api.editUserProfile(user, job)
+  .then(answer => {
+    userInfo.setUserInfo(answer.name, answer.about);
+    editProfilePopup.close();
+  })
 }
 
 // отправка данных, создание новой карточки
