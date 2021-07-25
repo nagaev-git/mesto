@@ -33,6 +33,15 @@ placeValidation.enableValidation();
 const avatarValidation = new FormValidator(validationConfig, formDataAvatar);
 avatarValidation.enableValidation();
 
+// изменение текста кнопки при отправке
+const toggleLoading = (popup, isLoaded) => {
+  if (isLoaded) {
+    popup.setSubmitButtonText('Сохранить');
+  } else {
+    popup.setSubmitButtonText('Сохранение...');
+  }
+}
+
 // создание экземпляра карточки
 const createCard = (item) => {
   const card = new Card(
@@ -81,31 +90,51 @@ const likeCardCallback = (isLiked, data, card) => {
 
 // отправка данных, редактирование профиля
 const handleProfileFormSubmit = ({user, job}) => {
+  toggleLoading(editProfilePopup, false);
+
   api.editUserProfile(user, job)
   .then(answer => {
     userInfo.setUserInfo(answer.name, answer.about);
     editProfilePopup.close();
   })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => {
+    toggleLoading(editProfilePopup, true);
+  });
 }
 
 // отправка данных, создание новой карточки
 const handleCreatCardFormSubmit = ({place, link}) => {
+  toggleLoading(createCardPopup, false);
+
   api.addCard(place, link)
     .then(newCard => {
       createCardWithForm(newCard);
     })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      toggleLoading(createCardPopup, true);
+    });
   createCardPopup.close();
 }
 // отправка данных, изменить аватар
 const handleAvatarFormSubmit = ({avatar}) => {
-  const editAvatarPromise = api.editUserAvatar(avatar);
+  toggleLoading(editAvatarPopup, false);
 
+  const editAvatarPromise = api.editUserAvatar(avatar);
   editAvatarPromise.then(data => {
     userInfo.setUserAvatar(data.avatar);
-    editAvatarPopup.close();
     }).catch((err) => {
       console.log(err)
+    })
+    .finally(() => {
+      toggleLoading(createCardPopup, true);
     });
+    editAvatarPopup.close();
 }
 
 // открыть попап редактирования профиля
