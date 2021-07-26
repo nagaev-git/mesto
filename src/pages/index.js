@@ -33,7 +33,7 @@ placeValidation.enableValidation();
 const avatarValidation = new FormValidator(validationConfig, formDataAvatar);
 avatarValidation.enableValidation();
 
-// изменение текста кнопки при отправке
+// изменение текста кнопки при отправке запроса на сервер
 const toggleLoading = (popup, isLoaded) => {
   if (isLoaded) {
     popup.setSubmitButtonText('Сохранить');
@@ -68,7 +68,7 @@ const handleDeleteCard = (data) => {
   return api.deleteCard(data._id);
 }
 
-//Колбек постановки или удаление лайка
+// колбек постановки или удаление лайка
 const likeCardCallback = (isLiked, data, card) => {
   if (isLiked) {
     api.addLikeCard(data._id)
@@ -88,7 +88,7 @@ const likeCardCallback = (isLiked, data, card) => {
   }
 }
 
-// отправка данных, редактирование профиля
+// обработчик редактирования профиля
 const handleProfileFormSubmit = ({user, job}) => {
   toggleLoading(editProfilePopup, false);
 
@@ -105,7 +105,7 @@ const handleProfileFormSubmit = ({user, job}) => {
   });
 }
 
-// отправка данных, создание новой карточки
+// обработчик создания новой карточки
 const handleCreatCardFormSubmit = ({place, link}) => {
   toggleLoading(createCardPopup, false);
 
@@ -121,7 +121,7 @@ const handleCreatCardFormSubmit = ({place, link}) => {
     });
   createCardPopup.close();
 }
-// отправка данных, изменить аватар
+// обработчик изменения аватара
 const handleAvatarFormSubmit = ({avatar}) => {
   toggleLoading(editAvatarPopup, false);
 
@@ -157,6 +157,7 @@ const openPopupAvatar = () => {
   editAvatarPopup.open();
 }
 
+// данные для отправки запроса на сервер
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-26',
   headers: {

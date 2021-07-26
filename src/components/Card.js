@@ -49,12 +49,12 @@ export default class Card {
       return this._element;
     }
 
-  //Функция выставляющая количество лайков
+// функция выставляющая количество лайков
   setLikeCounter (number) {
     this._likeCounter.textContent = number;
   }
 
-  //Обработчик клика по лайку
+// обработчик клика по лайку
   _likeButtonHandler() {
     this._toggleLikeCard();
     this._isLiked = !this._isLiked;

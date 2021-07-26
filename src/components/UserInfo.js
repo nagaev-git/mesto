@@ -8,20 +8,20 @@ export default class UserInfo {
     getUserInfo() {
         return {userName: this._inputName.textContent, userJob: this._inputJob.textContent};
     }
-//  введенные пользователем данные
+//  данные профиля пользователя
     setUserInfo(userName, userJob) {
         this._inputName.textContent = userName;
         this._inputJob.textContent = userJob;
     }
-
+// данные аватара пользователя
     setUserAvatar(avatarLink) {
         this._selectorAvatar.src = avatarLink;
     }
-
+// данные ID пользователя
     setUserId(userId) {
         this._userId = userId;
     }
-
+// ID пользователя
     getUserId() {
         return this._userId;
     }
