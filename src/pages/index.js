@@ -6,6 +6,7 @@ import FormValidator from "../components/FormValidator.js";
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithSubmit from '../components/PopupWithSubmit.js';
 import UserInfo from '../components/UserInfo.js';
 import {
   formDataProfileEdit,
@@ -63,9 +64,21 @@ const createCardWithForm = (item) => {
   cardSection.addItem(newCard);
 }
 
-// удаление карточки
-const handleDeleteCard = (data) => {
-  return api.deleteCard(data._id);
+// колбек удаление карточки 
+const handleDeleteCard = (evt, data) => {
+  
+  deleteCardPopup.setSubmitCallback(() => {
+    api.deleteCard(data._id)
+    .then(() => {
+      deleteCardPopup.close();
+      const target = evt.target;
+      target.closest('.card').remove();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  })
+  deleteCardPopup.open();
 }
 
 // колбек постановки или удаление лайка
@@ -211,6 +224,8 @@ const editProfilePopup = new PopupWithForm('.popup_edit-profile', handleProfileF
 const createCardPopup = new PopupWithForm('.popup_new-place', handleCreatCardFormSubmit);
 // попап редактирования аватара
 const editAvatarPopup = new PopupWithForm('.popup_update-avatar', handleAvatarFormSubmit);
+// попап удаления карточки
+const deleteCardPopup = new PopupWithSubmit('.popup_delete-card', handleDeleteCard);
 
 
 
@@ -226,3 +241,4 @@ imagePopup.setEventListeners();
 editProfilePopup.setEventListeners();
 createCardPopup.setEventListeners();
 editAvatarPopup.setEventListeners();
+deleteCardPopup.setEventListeners();

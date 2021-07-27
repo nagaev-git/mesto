@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(data, cardSelector, imagePopup, userId, deleteCard, likeCard) {
+    constructor(data, cardSelector, imagePopup, userId, deleteCardCallback, likeCard) {
       this._data = data;
       this._name = data.name;
       this._link = data.link;
@@ -8,7 +8,7 @@ export default class Card {
       this._userId = userId;
       this._cardSelector = cardSelector;
       this._imagePopup = imagePopup;
-      this._deleteCard = deleteCard;
+      this._deleteCardCallback = deleteCardCallback;
       this._likeCard = likeCard;
       this._isLiked = false;
     }
@@ -62,14 +62,8 @@ export default class Card {
   }
 
 //  удалить карточку
-    _deleteCardElement() {
-      this._deleteCard(this._data)
-        .then(() => {
-          this._element.closest('.card').remove();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    _deleteCardElement(evt) {
+      this._deleteCardCallback(evt, this._data)
     }
 
 //  лайк карточки
@@ -86,8 +80,8 @@ export default class Card {
           this._likeButtonHandler();
         });
   
-      this._element.querySelector('.card__delete').addEventListener('click', () => {
-          this._deleteCardElement();
+      this._element.querySelector('.card__delete').addEventListener('click', (evt) => {
+          this._deleteCardElement(evt);
         });
     }
   }
