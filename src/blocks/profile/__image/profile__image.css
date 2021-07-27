@@ -1,17 +1,7 @@
 .profile__image {
+    display: block;
     width: 120px;
     height: 120px;
     border-radius: 50%;
-}
-
-@media screen and (max-width: 900px) {
-    .profile__image {
-        margin-left: 27px;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .profile__image {
-        margin-left: 0;
-    }
+    object-fit: cover;
 }

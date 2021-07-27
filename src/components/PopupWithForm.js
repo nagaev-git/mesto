@@ -7,6 +7,11 @@ export default class PopupWithForm extends Popup {
         this._submitForm = submitForm;
         this._formData = this._popupContainer.querySelector('.form__data');
         this._cardList = this._formData.querySelectorAll('.form__input');
+        this._submitButton = this._popupContainer.querySelector('.form__button');
+    }
+
+    setSubmitButtonText(text) {
+        this._submitButton.textContent = text;
     }
 // закрытие попапа, сброс инпутов, удаление обработчика
     close() {

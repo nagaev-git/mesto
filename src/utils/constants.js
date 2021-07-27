@@ -5,10 +5,14 @@ export const formDataProfileEdit = popupProfileEdit.querySelector('.form__data')
 export const popupNewPlace = document.querySelector('.popup_new-place');
 export const formDataNewPlace = popupNewPlace.querySelector('.form__data');
 
+export const popupAvatar = document.querySelector('.popup_update-avatar');
+export const formDataAvatar = popupAvatar.querySelector('.form__data');
+
 // редактирование профиля
 export const profileSection = document.querySelector('.profile');
 export const buttonOpenPopupProfileEdit = profileSection.querySelector('.profile__button-edit');
 export const buttonOpenPopupNewPlace = profileSection.querySelector('.profile__button-add');
+export const buttonOpenPopupAvatar = profileSection.querySelector('.profile__overlay');
 
 // инпуты формы
 export const inputNameFormProfileEdit = document.querySelector('.form__input_js_name');
@@ -27,32 +31,3 @@ export const validationConfig = {
   buttonDisable: 'form__button_disable',
   buttonEnable: 'form__button_enable'
 }
-
-
-// шаблоны начальгых карточек
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
